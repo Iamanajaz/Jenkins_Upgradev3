@@ -2,43 +2,49 @@ package com.example;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.internal.matchers.GreaterThan;
-import org.mockito.internal.matchers.LessThan;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.lessThan;
-import static org.junit.Assert.*;
-import static org.junit.matchers.JUnitMatchers.containsString;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 public class TestGreeter {
 
-  private Greeter greeter;
+    private Greeter greeter;
 
-  @Before
-  public void setup() {
-    greeter = new Greeter();
-  }
-
-  @Test
-  public void greetShouldIncludeTheOneBeingGreeted() {
-    String someone = "World";
-
-    assertThat(greeter.greet(someone), containsString(someone));
-  }
-  
-
-  @Test
-  public void greetShouldIncludeGreetingPhrase() {
-    String someone = "World";
-
-    assertThat(greeter.greet(someone).length(), is(greaterThan(someone.length())));
-  }
+    @Before
+    public void setup() {
+        greeter = new Greeter();
+    }
 
     @Test
-  public void greetShouldIncludeGreetingMessage() {
-    String someone = "World, Thanks you making me Happy";
+    public void greetShouldIncludeTheOneBeingGreeted() {
+        String someone = "World";
+        assertThat(greeter.greet(someone), containsString(someone));
+    }
 
-    assertThat(greeter.greet(someone).length(), is(greaterThan(someone.length())));
-  }
+    @Test
+    public void greetShouldIncludeGreetingPhrase() {
+        String someone = "World";
+        assertThat(greeter.greet(someone).length(),
+                is(greaterThan(someone.length())));
+    }
+
+    @Test
+    public void greetShouldIncludeGreetingMessage() {
+        String someone = "World, Thank you for making me happy";
+        assertThat(greeter.greet(someone).length(),
+                is(greaterThan(someone.length())));
+    }
+
+    @Test
+    public void greetShouldHandleNullInput() {
+        assertEquals("Hello!", greeter.greet(null));
+    }
+
+    @Test
+    public void greetShouldHandleEmptyInput() {
+        assertEquals("Hello!", greeter.greet(""));
+    }
 }
