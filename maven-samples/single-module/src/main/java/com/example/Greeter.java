@@ -1,26 +1,37 @@
 package com.example;
 
 /**
- * This is a class.
+ * Greeter class is responsible for generating greeting messages.
  */
 public class Greeter {
 
-  /**
-   * This is a constructor.
-   */
-  public Greeter() {
+    /**
+     * Default constructor.
+     */
+    public Greeter() {
+        // no initialization required
+    }
 
-  }
+    /**
+     * Returns a greeting message for the given person.
+     *
+     * @param someone the name or message of the person being greeted
+     * @return a formatted greeting message
+     */
+    public String greet(String someone) {
+        if (someone == null || someone.trim().isEmpty()) {
+            return "Hello!";
+        }
+        return String.format("Hello, %s!", someone);
+    }
 
-  
-  //TODO: Add javadoc comment
-  public String greet(String someone) {
-    return String.format("Hello, %s!", someone);
-  }
-
-  
-  public static void main(String args[]){
-    
-	  System.out.println("Hello from Main Method!!!");
-  }
+    /**
+     * Main method to demonstrate Greeter usage.
+     *
+     * @param args command-line arguments
+     */
+    public static void main(String[] args) {
+        Greeter greeter = new Greeter();
+        System.out.println(greeter.greet("World"));
+    }
 }
